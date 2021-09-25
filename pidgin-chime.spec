@@ -6,7 +6,7 @@ Summary:	Pidgin plugin for Amazon Chime
 Summary(pl.UTF-8):	Wtyczka Pidgina do komunikatora Amazon Chime
 Name:		pidgin-chime
 Version:	1.3
-Release:	1
+Release:	2
 License:	LGPL v2.1
 Group:		Applications/Communication
 Source0:	ftp://ftp.infradead.org/pub/pidgin-chime/%{name}-%{version}.tar.gz
