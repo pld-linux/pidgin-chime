@@ -5,18 +5,19 @@
 Summary:	Pidgin plugin for Amazon Chime
 Summary(pl.UTF-8):	Wtyczka Pidgina do komunikatora Amazon Chime
 Name:		pidgin-chime
-Version:	1.3
-Release:	2
+Version:	1.4.1
+Release:	1
 License:	LGPL v2.1
 Group:		Applications/Communication
-Source0:	ftp://ftp.infradead.org/pub/pidgin-chime/%{name}-%{version}.tar.gz
-# Source0-md5:	85afe8f04054c6cec0f34916d2719213
+#Source0:	ftp://ftp.infradead.org/pub/pidgin-chime/%{name}-%{version}.tar.gz
+Source0:	https://github.com/awslabs/pidgin-chime/archive/v%{version}/%{name}-%{version}.tar.gz
+# Source0-md5:	6c312bba0521c4bce4c2d7dcb82d8a36
 URL:		https://github.com/awslabs/pidgin-chime
 BuildRequires:	autoconf >= 2.62
 BuildRequires:	automake
 %if %{with evolution}
-BuildRequires:	evolution-data-server-devel >= 3.33
-BuildRequires:	evolution-devel >= 3.33
+BuildRequires:	evolution-data-server-devel >= 3.33.2
+BuildRequires:	evolution-devel >= 3.33.2
 %endif
 BuildRequires:	farstream-devel >= 0.2
 BuildRequires:	gettext-tools
@@ -24,14 +25,20 @@ BuildRequires:	gnutls-devel >= 3.2.0
 BuildRequires:	gstreamer-devel >= 1.0
 BuildRequires:	gstreamer-plugins-base-devel >= 1.0
 BuildRequires:	json-glib-devel
+BuildRequires:	libmarkdown-devel
 BuildRequires:	libpurple-devel >= 2.8.0
 BuildRequires:	libsoup-devel >= 2.59
 BuildRequires:	libtool >= 2:2
+BuildRequires:	libxcb-devel
 BuildRequires:	libxml2-devel >= 2.0
 BuildRequires:	opus-devel
 BuildRequires:	pidgin-devel >= 2.13.0
 BuildRequires:	pkgconfig
 BuildRequires:	protobuf-c-devel
+BuildRequires:	xorg-lib-libX11-devel
+BuildRequires:	xorg-lib-libXdamage-devel
+BuildRequires:	xorg-lib-libXext-devel
+BuildRequires:	xorg-lib-libXfixes-devel
 Requires:	libpurple-protocol-chime = %{version}-%{release}
 Requires:	pidgin >= 2.13.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -70,8 +77,8 @@ komunikacyjnej libpurple, używanej przez Pidgina i inne narzędzia.
 Summary:	Evolution plugin for Amazon Chime
 Summary(pl.UTF-8):	Wtyczka Evolution dla komunikatora Amazon Chime
 Group:		Applications/Communication
-Requires:	evolution >= 3.33
-Requires:	evolution-data-server >= 3.33
+Requires:	evolution >= 3.33.2
+Requires:	evolution-data-server >= 3.33.2
 Requires:	libpurple-protocol-chime = %{version}-%{release}
 
 %description -n evolution-chime
@@ -120,7 +127,10 @@ rm -rf $RPM_BUILD_ROOT
 # -f %{name}.lang
 %defattr(644,root,root,755)
 %doc README.md TODO
+%attr(755,root,root) %{_bindir}/chime-auth.py
+%attr(755,root,root) %{_bindir}/chime-joinable.py
 %attr(755,root,root) %{_libdir}/pidgin/chimeseen.so
+%{_desktopdir}/chime-auth.desktop
 %{_pixmapsdir}/pidgin/protocols/*/chime.png
 %{_pixmapsdir}/pidgin/protocols/scalable/chime*.svg
 
@@ -128,6 +138,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/farstream-0.2/libapp-transmitter.so
 %attr(755,root,root) %{_libdir}/gstreamer-1.0/libgstchime.so
+%attr(755,root,root) %{_libdir}/gstreamer-1.0/libgstxcbimagesrc.so
 %attr(755,root,root) %{_libdir}/purple-2/libchimeprpl.so
 %{_datadir}/pidgin-chime
 
