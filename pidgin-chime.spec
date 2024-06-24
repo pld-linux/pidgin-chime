@@ -5,16 +5,17 @@
 Summary:	Pidgin plugin for Amazon Chime
 Summary(pl.UTF-8):	Wtyczka Pidgina do komunikatora Amazon Chime
 Name:		pidgin-chime
-Version:	1.4.1
-Release:	2
+Version:	1.5
+Release:	1
 License:	LGPL v2.1
 Group:		Applications/Communication
 #Source0:	ftp://ftp.infradead.org/pub/pidgin-chime/%{name}-%{version}.tar.gz
 Source0:	https://github.com/awslabs/pidgin-chime/archive/v%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	6c312bba0521c4bce4c2d7dcb82d8a36
+# Source0-md5:	eec0898c082ff15437185916310f0b08
 URL:		https://github.com/awslabs/pidgin-chime
 BuildRequires:	autoconf >= 2.62
 BuildRequires:	automake
+BuildRequires:	dbus-devel
 %if %{with evolution}
 BuildRequires:	evolution-data-server-devel >= 3.33.2
 BuildRequires:	evolution-devel >= 3.33.2
